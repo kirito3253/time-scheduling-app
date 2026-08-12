@@ -26,3 +26,12 @@ function renderTasks() {
 }
 
 renderTasks();
+
+const addTaskBtn = document.getElementById("add-task-btn");
+addTaskBtn.addEventListener("click", function () {
+    const title = prompt("タスク名を入力してください");
+    const task = {
+        id: crypto.randomUUID(),
+        title: title,
+        
+    }
