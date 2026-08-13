@@ -67,40 +67,30 @@ function renderTasks() {
         taskListEl.appendChild(li);
     });
 }
-// 初期表示
-renderTasks();
 
-const nowBtn = document.getElementById("tab-btn-now");
-nowBtn.addEventListener("click", function () {
+function showTab(tabId) {
     const allTabs = document.querySelectorAll(".tab-content");
     allTabs.forEach((tab) => {
         tab.style.display = "none";
     });
-    const tab = document.getElementById("tab-now");
+    const tab = document.getElementById(tabId);
     tab.style.display = "block";
-    renderTasks();
+}
+
+const nowBtn = document.getElementById("tab-btn-now");
+nowBtn.addEventListener("click", function () {
+    showTab("tab-now");
 });
 
 const tasklistBtn = document.getElementById("tab-btn-tasklist");
 tasklistBtn.addEventListener("click", function () {
-    const allTabs = document.querySelectorAll(".tab-content");
-    allTabs.forEach((tab) => {
-        tab.style.display = "none";
-    });
-    const displayTab = document.getElementById("tab-tasklist");
-    displayTab.style.display = "block";
+    showTab("tab-tasklist");
     renderTasks();
 });
 
 const calendarBtn = document.getElementById("tab-btn-calendar");
 calendarBtn.addEventListener("click", function () {
-    const allTabs = document.querySelectorAll(".tab-content");
-    allTabs.forEach((tab) => {
-        tab.style.display = "none";
-    });
-    const displayTab = document.getElementById("tab-calendar");
-    displayTab.style.display = "block";
-    renderTasks();
+    showTab("tab-calendar");
 });
 
 // タスク追加ボタンのクリックイベントを設定
@@ -126,3 +116,5 @@ addTaskBtn.addEventListener("click", function () {
     renderTasks();
 });
 
+// 初期表示
+showTab("tab-now");
