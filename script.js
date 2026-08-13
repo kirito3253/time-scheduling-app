@@ -22,8 +22,21 @@ function renderTasks() {
     taskListEl.innerHTML = "";
     // タスクをリストに追加
     tasks.forEach(function (task) {
+        //　タスクのタイトルを表示するリストアイテムを作成
         const li = document.createElement("li");
         li.textContent = task.title;
+        // 削除ボタンを作成
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "削除";
+        // 削除ボタンのクリックイベントを設定
+        deleteBtn.addEventListener("click", function () {
+            // タスクを削除する
+            tasks = tasks.filter((t) => t.id !== task.id);
+            // タスクリストを再表示
+            renderTasks();
+        });
+
+        li.appendChild(deleteBtn);
         taskListEl.appendChild(li);
     });
 }
