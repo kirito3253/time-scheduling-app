@@ -23,6 +23,7 @@ function renderTasks() {
         //　タスクのタイトルを表示するリストアイテムを作成
         const li = document.createElement("li");
 
+        // チェックボックスを作成
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = task.completed;
@@ -68,6 +69,7 @@ function renderTasks() {
     });
 }
 
+// タブを切り替える関数
 function showTab(tabId) {
     const allTabs = document.querySelectorAll(".tab-content");
     allTabs.forEach((tab) => {
@@ -77,17 +79,20 @@ function showTab(tabId) {
     tab.style.display = "block";
 }
 
+// 今すぐボタンのクリックイベントを設定
 const nowBtn = document.getElementById("tab-btn-now");
 nowBtn.addEventListener("click", function () {
     showTab("tab-now");
 });
 
+// タスク一覧ボタンのクリックイベントを設定
 const tasklistBtn = document.getElementById("tab-btn-tasklist");
 tasklistBtn.addEventListener("click", function () {
     showTab("tab-tasklist");
     renderTasks();
 });
 
+// カレンダーボタンのクリックイベントを設定
 const calendarBtn = document.getElementById("tab-btn-calendar");
 calendarBtn.addEventListener("click", function () {
     showTab("tab-calendar");

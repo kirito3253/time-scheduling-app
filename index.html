@@ -17,6 +17,28 @@
 
     <!-- 各画面の中身 -->
     <div id="tab-now" class="tab-content">
+        <div>
+            <label for="duration-select">今使える時間を選択してください：</label>
+            <select name="durations" id="duration-select">
+                <option value="">--1つ選択してください--</option>
+                <option value="15min">15分</option>
+                <option value="30min">30分</option>
+                <option value="1hour">1時間</option>
+                <option value="2hour+">2時間以上</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="location-select">今いる場所を選択してください：</label>
+            <select name="locations" id="location-select">
+                <option value="">--1つ選択してください--</option>
+                <option value="home">家</option>
+                <option value="out">外</option>
+            </select>
+        </div>
+
+        <button id="task-suggest-btn">タスク提案</button>
+        <ul id="task-suggestion"></ul>
     </div>
 
     <div id="tab-tasklist" class="tab-content">
