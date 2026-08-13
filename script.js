@@ -121,5 +121,42 @@ addTaskBtn.addEventListener("click", function () {
     renderTasks();
 });
 
+const DURATION_TO_MINUTES = {
+  "15min": 15,
+  "30min": 30,
+  "1hour": 60,
+  "2hour+": 120,
+};
+
+const suggestTaskBtn = document.getElementById("suggest-task-btn");
+suggestTaskBtn.addEventListener("click", function () {
+    const selectedDuration = document.getElementById("duration-select").value;
+    const selectedLocation = document.getElementById("location-select").value;
+
+    const suggestTask = document.getElementById("task-suggestion");
+    suggestTask.innerHTML = "";
+    const li = document.createElement("li");
+
+    let possibleTasks = tasks.filter((t) => t.assigned === false && t.completed === false);
+    possibleTasks.sort((a, b) => {
+        if (a.deadline < b.deadline) {
+            return -1;
+        } else if (a.deadline > b.deadline) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+    possibleTasks = possibleTasks.filter((t) => t.location === selectedLocation || t.location === "anywhere");
+    possibleTasks = possibleTasks.filter((t) => DURATION_TO_MINUTES[t.duration] <= DURATION_TO_MINUTES[selectedDuration]);
+
+    if  (possibleTasks.length === 0) {
+        li.textContent = "該当するタスクがありません";
+    } else {    
+        li.textContent = possibleTasks[0].title;
+    }
+    suggestTask.appendChild(li)
+});
+
 // 初期表示
 showTab("tab-now");
