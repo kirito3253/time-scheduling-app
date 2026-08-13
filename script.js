@@ -22,7 +22,25 @@ function renderTasks() {
     tasks.forEach(function (task) {
         //　タスクのタイトルを表示するリストアイテムを作成
         const li = document.createElement("li");
-        li.textContent = task.title;
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.completed;
+        // チェックボックスの変更イベントを設定
+        checkbox.addEventListener("change", function () {
+            task.completed = checkbox.checked;
+            renderTasks();
+        });
+        li.appendChild(checkbox);
+
+        // タスクのタイトルを表示するspan要素を作成
+        const span = document.createElement("span");
+        span.textContent = task.title;
+        if (task.completed) {
+            span.style.textDecoration = "line-through";
+        }
+        li.appendChild(span);
+
         // 編集ボタンを作成
         const editBtn = document.createElement("button");
         editBtn.textContent = "編集";
@@ -34,6 +52,8 @@ function renderTasks() {
                 renderTasks();
             }
         });
+        li.appendChild(editBtn);
+
         // 削除ボタンを作成
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "削除";
@@ -42,8 +62,8 @@ function renderTasks() {
             tasks = tasks.filter((t) => t.id !== task.id);
             renderTasks();
         });
-        li.appendChild(editBtn);
         li.appendChild(deleteBtn);
+
         taskListEl.appendChild(li);
     });
 }
