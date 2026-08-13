@@ -70,6 +70,39 @@ function renderTasks() {
 // 初期表示
 renderTasks();
 
+const nowBtn = document.getElementById("tab-btn-now");
+nowBtn.addEventListener("click", function () {
+    const allTabs = document.querySelectorAll(".tab-content");
+    allTabs.forEach((tab) => {
+        tab.style.display = "none";
+    });
+    const tab = document.getElementById("tab-now");
+    tab.style.display = "block";
+    renderTasks();
+});
+
+const tasklistBtn = document.getElementById("tab-btn-tasklist");
+tasklistBtn.addEventListener("click", function () {
+    const allTabs = document.querySelectorAll(".tab-content");
+    allTabs.forEach((tab) => {
+        tab.style.display = "none";
+    });
+    const displayTab = document.getElementById("tab-tasklist");
+    displayTab.style.display = "block";
+    renderTasks();
+});
+
+const calendarBtn = document.getElementById("tab-btn-calendar");
+calendarBtn.addEventListener("click", function () {
+    const allTabs = document.querySelectorAll(".tab-content");
+    allTabs.forEach((tab) => {
+        tab.style.display = "none";
+    });
+    const displayTab = document.getElementById("tab-calendar");
+    displayTab.style.display = "block";
+    renderTasks();
+});
+
 // タスク追加ボタンのクリックイベントを設定
 const addTaskBtn = document.getElementById("add-task-btn");
 addTaskBtn.addEventListener("click", function () {

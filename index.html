@@ -7,8 +7,26 @@
 </head>
 <body>
     <h1>タスク管理アプリ</h1>
-    <button id="add-task-btn">タスク追加</button>
-    <ul id="task-list"></ul>
+
+    <!-- タブ切り替えボタン -->
+    <nav>
+        <button id="tab-btn-now">今すぐ</button>
+        <button id="tab-btn-tasklist">タスク一覧</button>
+        <button id="tab-btn-calendar">カレンダー</button>
+    </nav>
+
+    <!-- 各画面の中身 -->
+    <div id="tab-now" class="tab-content">
+    </div>
+
+    <div id="tab-tasklist" class="tab-content">
+        <button id="add-task-btn">タスク追加</button>
+        <ul id="task-list"></ul>
+    </div>
+
+    <div id="tab-calendar" class="tab-content">
+    </div>
+
 
     <script src="script.js"></script>
 </body>
